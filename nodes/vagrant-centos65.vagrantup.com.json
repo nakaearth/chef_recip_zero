@@ -2,8 +2,19 @@
   "name": "vagrant-centos65.vagrantup.com",
   "normal": {
     "tags": [
-
-    ]
+      "myweb"
+    ],
+    "chef_provisioning": {
+      "location": {
+        "driver_url": "vagrant:/Users/nakamura01/.chef/vms",
+        "driver_version": "0.8.1",
+        "vm_name": "vagrant-centos65.vagrantup.com",
+        "vm_file_path": "/Users/nakamura01/.chef/vms/vagrant-centos65.vagrantup.com.vm",
+        "allocated_at": "2015-02-25 01:54:59 UTC",
+        "host_node": "http://localhost:8889/nodes/",
+        "needs_reload": true
+      }
+    }
   },
   "automatic": {
     "init_package": "init",

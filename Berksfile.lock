@@ -1,0 +1,11 @@
+DEPENDENCIES
+  apache2
+  zsh
+
+GRAPH
+  apache2 (3.0.1)
+    iptables (>= 0.0.0)
+    logrotate (>= 0.0.0)
+  iptables (0.14.1)
+  logrotate (1.8.0)
+  zsh (1.0.1)

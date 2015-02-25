@@ -19,6 +19,179 @@
       }
     }
   },
+  "default": {
+    "iptables": {
+      "install_rules": true
+    },
+    "logrotate": {
+      "global": {
+        "weekly": true,
+        "rotate": 4,
+        "create": "",
+        "/var/log/wtmp": {
+          "missingok": true,
+          "monthly": true,
+          "create": "0664 root utmp",
+          "rotate": 1
+        },
+        "/var/log/btmp": {
+          "missingok": true,
+          "monthly": true,
+          "create": "0660 root utmp",
+          "rotate": 1
+        }
+      }
+    },
+    "apache": {
+      "mpm": "prefork",
+      "version": "2.2",
+      "root_group": "root",
+      "default_site_name": "default",
+      "package": "httpd",
+      "perl_pkg": "perl",
+      "apachectl": "/usr/sbin/apachectl",
+      "dir": "/etc/httpd",
+      "log_dir": "/var/log/httpd",
+      "error_log": "error.log",
+      "access_log": "access.log",
+      "user": "apache",
+      "group": "apache",
+      "binary": "/usr/sbin/httpd",
+      "conf_dir": "/etc/httpd/conf",
+      "docroot_dir": "/var/www/html",
+      "cgibin_dir": "/var/www/cgi-bin",
+      "icondir": "/var/www/icons",
+      "cache_dir": "/var/cache/httpd",
+      "run_dir": "/var/run/httpd",
+      "lock_dir": "/var/run/httpd",
+      "pid_file": "/var/run/httpd/httpd.pid",
+      "lib_dir": "/usr/lib64/httpd",
+      "libexec_dir": "/usr/lib64/httpd/modules",
+      "service_name": "httpd",
+      "listen_addresses": [
+        "*"
+      ],
+      "listen_ports": [
+        "80"
+      ],
+      "contact": "ops@example.com",
+      "timeout": 300,
+      "keepalive": "On",
+      "keepaliverequests": 100,
+      "keepalivetimeout": 5,
+      "locale": "C",
+      "sysconfig_additional_params": {
+
+      },
+      "default_site_enabled": false,
+      "servertokens": "Prod",
+      "serversignature": "On",
+      "traceenable": "Off",
+      "allowed_openids": [
+
+      ],
+      "status_allow_list": "127.0.0.1 ::1",
+      "ext_status": false,
+      "info_allow_list": "127.0.0.1 ::1",
+      "prefork": {
+        "startservers": 16,
+        "minspareservers": 16,
+        "maxspareservers": 32,
+        "serverlimit": 256,
+        "maxrequestworkers": 256,
+        "maxconnectionsperchild": 10000
+      },
+      "worker": {
+        "startservers": 4,
+        "serverlimit": 16,
+        "minsparethreads": 64,
+        "maxsparethreads": 192,
+        "threadlimit": 192,
+        "threadsperchild": 64,
+        "maxrequestworkers": 1024,
+        "maxconnectionsperchild": 0
+      },
+      "event": {
+        "startservers": 4,
+        "serverlimit": 16,
+        "minsparethreads": 64,
+        "maxsparethreads": 192,
+        "threadlimit": 192,
+        "threadsperchild": 64,
+        "maxrequestworkers": 1024,
+        "maxconnectionsperchild": 0
+      },
+      "proxy": {
+        "require": "all denied",
+        "order": "deny,allow",
+        "deny_from": "all",
+        "allow_from": "none"
+      },
+      "default_modules": [
+        "status",
+        "alias",
+        "auth_basic",
+        "authn_core",
+        "authn_file",
+        "authz_core",
+        "authz_groupfile",
+        "authz_host",
+        "authz_user",
+        "autoindex",
+        "dir",
+        "env",
+        "mime",
+        "negotiation",
+        "setenvif",
+        "log_config",
+        "logio"
+      ],
+      "mod_auth_cas": {
+        "from_source": false,
+        "source_revision": "v1.0.8.1"
+      },
+      "mod_auth_openid": {
+        "ref": "v0.8",
+        "version": "0.8",
+        "source_url": "https://github.com/bmuller/mod_auth_openid/archive/v0.8.tar.gz",
+        "cache_dir": "/var/cache/mod_auth_openid",
+        "dblocation": "/var/cache/mod_auth_openid/mod_auth_openid.db",
+        "configure_flags": [
+
+        ]
+      },
+      "mod_fastcgi": {
+        "download_url": "http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz"
+      },
+      "mod_php5": {
+        "install_method": "package"
+      },
+      "mod_ssl": {
+        "protocol": "All -SSLv2 -SSLv3",
+        "cipher_suite": "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4!aNULL!eNULL!LOW!3DES!MD5!EXP!PSK!SRP!DSS",
+        "honor_cipher_order": "On",
+        "insecure_renegotiation": "Off",
+        "strict_sni_vhost_check": "Off",
+        "session_cache": "shmcb:/var/cache/mod_ssl/scache(512000)",
+        "session_cache_timeout": 300,
+        "compression": "Off",
+        "use_stapling": "Off",
+        "stapling_responder_timeout": 5,
+        "stapling_return_responder_errors": "Off",
+        "stapling_cache": "shmcb:/var/run/ocsp(128000)",
+        "pass_phrase_dialog": "builtin",
+        "mutex": "default",
+        "directives": {
+
+        }
+      }
+    },
+    "apache2": {
+      "mod_pagespeed": {
+        "package_link": "https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb"
+      }
+    }
+  },
   "automatic": {
     "init_package": "init",
     "kernel": {
@@ -239,7 +412,8 @@
           },
           "state": "up",
           "arp": {
-            "10.0.2.2": "52:54:00:12:35:02"
+            "10.0.2.2": "52:54:00:12:35:02",
+            "10.0.2.3": "52:54:00:12:35:03"
           },
           "routes": [
             {
@@ -277,15 +451,15 @@
         "interfaces": {
           "lo": {
             "rx": {
-              "bytes": "0",
-              "packets": "0",
+              "bytes": "333551",
+              "packets": "370",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
             },
             "tx": {
-              "bytes": "0",
-              "packets": "0",
+              "bytes": "333551",
+              "packets": "370",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
@@ -295,16 +469,16 @@
           "eth0": {
             "tx": {
               "queuelen": "1000",
-              "bytes": "239649",
-              "packets": "3032",
+              "bytes": "413120",
+              "packets": "3716",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
               "collisions": "0"
             },
             "rx": {
-              "bytes": "42520419",
-              "packets": "29213",
+              "bytes": "42907465",
+              "packets": "30351",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
@@ -315,10 +489,10 @@
     },
     "ipaddress": "10.0.2.15",
     "macaddress": "08:00:27:07:9E:3D",
-    "uptime_seconds": 403,
-    "uptime": "6 minutes 43 seconds",
-    "idletime_seconds": 394,
-    "idletime": "6 minutes 34 seconds",
+    "uptime_seconds": 10337,
+    "uptime": "2 hours 52 minutes 17 seconds",
+    "idletime_seconds": 10298,
+    "idletime": "2 hours 51 minutes 38 seconds",
     "languages": {
       "lua": {
         "version": "5.1.4"
@@ -366,13 +540,13 @@
     "filesystem": {
       "/dev/sda1": {
         "kb_size": "7635048",
-        "kb_used": "1083864",
-        "kb_available": "6163344",
+        "kb_used": "1084284",
+        "kb_available": "6162924",
         "percent_used": "15%",
         "mount": "/",
         "total_inodes": "484800",
-        "inodes_used": "41982",
-        "inodes_available": "442818",
+        "inodes_used": "41984",
+        "inodes_available": "442816",
         "inodes_percent_used": "9%",
         "fs_type": "ext4",
         "mount_options": [
@@ -397,8 +571,8 @@
       },
       "vagrant": {
         "kb_size": "243966468",
-        "kb_used": "44877984",
-        "kb_available": "199088484",
+        "kb_used": "45012796",
+        "kb_available": "198953672",
         "percent_used": "19%",
         "mount": "/vagrant",
         "total_inodes": "1000",
@@ -481,23 +655,23 @@
         "free": "0kB"
       },
       "total": "603580kB",
-      "free": "152540kB",
-      "buffers": "21948kB",
-      "cached": "276916kB",
-      "active": "161960kB",
-      "inactive": "218184kB",
-      "dirty": "1568kB",
+      "free": "135528kB",
+      "buffers": "24148kB",
+      "cached": "290404kB",
+      "active": "167336kB",
+      "inactive": "227580kB",
+      "dirty": "80kB",
       "writeback": "0kB",
-      "anon_pages": "81252kB",
-      "mapped": "9916kB",
-      "slab": "55752kB",
-      "slab_reclaimable": "36768kB",
-      "slab_unreclaim": "18984kB",
-      "page_tables": "2540kB",
+      "anon_pages": "80392kB",
+      "mapped": "10032kB",
+      "slab": "58016kB",
+      "slab_reclaimable": "39344kB",
+      "slab_unreclaim": "18672kB",
+      "page_tables": "2592kB",
       "nfs_unstable": "0kB",
       "bounce": "0kB",
       "commit_limit": "301788kB",
-      "committed_as": "159884kB",
+      "committed_as": "159260kB",
       "vmalloc_total": "34359738367kB",
       "vmalloc_used": "23416kB",
       "vmalloc_chunk": "34359705592kB"
@@ -1101,12 +1275,39 @@
       }
     },
     "root_group": "root",
-    "ohai_time": 1424828382.5743217,
+    "ohai_time": 1424838316.5301712,
     "recipes": [
-
+      "zsh",
+      "apache2",
+      "zsh::default",
+      "apache2::default",
+      "apache2::mod_deflate",
+      "apache2::mod_status",
+      "apache2::mod_alias",
+      "apache2::mod_auth_basic",
+      "apache2::mod_authn_core",
+      "apache2::mod_authn_file",
+      "apache2::mod_authz_core",
+      "apache2::mod_authz_groupfile",
+      "apache2::mod_authz_host",
+      "apache2::mod_authz_user",
+      "apache2::mod_autoindex",
+      "apache2::mod_dir",
+      "apache2::mod_env",
+      "apache2::mod_mime",
+      "apache2::mod_negotiation",
+      "apache2::mod_setenvif",
+      "apache2::mod_log_config",
+      "apache2::mod_logio",
+      "apache2::mod_rewrite",
+      "apache2::mod_headers"
     ],
     "roles": [
 
     ]
-  }
+  },
+  "run_list": [
+    "recipe[zsh]",
+    "recipe[apache2]"
+  ]
 }
